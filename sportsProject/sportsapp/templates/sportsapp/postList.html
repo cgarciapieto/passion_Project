@@ -1,0 +1,9 @@
+{% extends 'sports/index.html' %}
+
+{% block content %}
+{% for eachPost in post_list %}
+<li>{{eachPost.title}}</li>
+{{eachPost.textField}}
+{% endfor %}
+
+{% endblock content %}

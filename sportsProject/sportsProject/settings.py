@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'sportsapp',
     'feedparser',
-    'django_feedparser',
+
 ]
 
 MIDDLEWARE = [

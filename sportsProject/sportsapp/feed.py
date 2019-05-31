@@ -11,6 +11,7 @@ def get_source(parsed):
         'link': feed['link'],
         'title':feed['title'],
         'subtitle': feed['subtitle'],
+        'summary': feed['summary'],
     }
 #returns a list of articles
 def get_articles(parsed):

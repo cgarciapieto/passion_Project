@@ -2,9 +2,104 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Index</title>
+    <title>Title</title>
+    {% load static %}
+
 </head>
 <body>
-<h1>TRASH TALK</h1>
+{% block navbar %}
+<nav>
+    <div id=navBar1>
+        <ul>
+            <li id="redHover"><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'postList' %}">All Entries</a></li>
+
+
+
+        </ul>
+    </div>
+</nav>
+{% endblock navbar %}
+
+<div class="wrapper">
+    <div class="box header">{% block header %}
+        <!--main content-->
+        <header>
+            <h2>{{ user.username }}</h2>
+        </header>
+        {% endblock header %}
+    </div>
+
+
+        {% block sidebar %}
+
+
+        <h1>{{ feed.feed.title }}</h1>
+
+
+        {% if feed.items %}
+
+        {% for item in feed.items %}
+        <div>
+            <p>
+                {{ item.published }}
+                <a href="{{ item.link }}">{{ item.title }}</a>
+                {{ item.author }}
+            </p>
+        </div>
+        {% endfor %}
+
+        {% endif %}
+
+
+        {% endblock sidebar %}
+    </div>
+
+
+    <div class="box content">
+        {% block content %}
+        <!--MAIN CONTENT-->
+        {% if user.is_authenticated %}
+
+        {% block navbar2 %}
+        <nav>
+            <div id=navBar12>
+                <ul>
+                    <li><a href="{% url 'createPost' %}">New Entry</a></li>
+
+                </ul>
+            </div>
+        </nav>
+        {% endblock navbar2 %}
+
+
+        {% if allEntries %}
+        <ul>
+            {% for eachEntry in allEntries %}
+
+            <h2><a href="{% url 'viewPost'  eachEntry.pk %}">{{ eachEntry.title }}</a></h2>
+
+            <p>{{ eachEntry.textField }} </p>
+            <p>{{ eachEntry.dateCreated }}</p>
+            <a href="#">Edit</a> or <a href="#">Delete</a></li>
+<!--            <a href="{% url 'editPost' eachEntry.pk %}">Edit</a> or <a href="{% url 'deletePost' eachEntry.pk %}">Delete</a></li>-->
+            {% endfor %}
+        </ul>
+
+
+        {% else %}
+        <h2>Add some post</h2>
+        {% endif %}
+
+
+        {% else %}
+        <p><a href="{% url 'createUser' %}">Create a user</a> or</p>
+
+        {% endif %}
+        {% endblock %}
+    </div>
+
+</div>
+
+@login_required
 </body>
-</html>

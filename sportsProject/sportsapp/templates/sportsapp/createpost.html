@@ -1,10 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>createpost</title>
-</head>
-<body>
+{% extends 'sports/index.html' %}
 
-</body>
-</html>
+{% block content%}
+
+<h1> Post</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ Postform.as_p }}
+    <button>Submit</button>
+</form>
+
+
+<table>
+
+    <tr>
+        <td>{{ form.username.label_tag }}</td>
+        <td>{{ form.username }}</td>
+    </tr>
+
+    <tr>
+        <td>{{ form.password.label_tag }}</td>
+        <td>{{ form.password }}</td>
+    </tr>
+</table>
+
+{% endblock %}
