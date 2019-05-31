@@ -11,6 +11,7 @@ urlpatterns = [
     path('createUser/', views.createUser, name='createUser'),
     path('postDetails/', views.postDetails, name='postDetails'),
     path('deletePost/<int:post_id>/', views.deletePost, name='deletePost'),
+
     # path('media/<path:path>/', serve, {'document_root': settings.MEDIA_ROOT}),
 
 ]

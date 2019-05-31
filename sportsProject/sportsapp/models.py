@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 
+
 class UserModel(models.Model):
     username = models.CharField(max_length=200, default="")
     password1 = models.CharField(max_length=200, default="")
@@ -20,6 +21,14 @@ class PostModel(models.Model):
     dateCreated = models.DateField(default=timezone.now)
     foreignkeyToUserModel = models.ForeignKey(UserModel, on_delete=models.CASCADE, blank=True, null=True)
 
+
+
+class News(models.Model):
+    title = models.CharField(verbose_name='Name', null=False, max_length=50)
+    description = models.CharField(verbose_name='Content', null=False, max_length=300)
+
+
+
     # def get_absolute_url(self):
     #     return f'/accounts/{self.id}'
-    # imageUpload = models.ImageField(upload_to="media", null=True, blank=True)
+    # imageUpload = models.ImageField(upload_to="media", null=True, blank=True)pyth

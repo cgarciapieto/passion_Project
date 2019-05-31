@@ -12,10 +12,9 @@ class SignInForm(forms.ModelForm):
             if password1 != password2:
                 raise forms.ValidationError('Passwords Do NOt Match')
 
-            class PostForm(forms.ModelForm):
-                class Meta:
-                    model = PostModel
-                    labels = {'title': 'Subject', 'textField': 'limit 140 characters', 'dateCreated': 'Date' }
-
-                    exclude=['foreignkeyToUserModel']
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = PostModel
+        labels = {'title': 'Subject', 'textField': 'limit 140 characters', 'dateCreated': 'Date' }
+        exclude = ['foreignkeyToUserModel']
 
