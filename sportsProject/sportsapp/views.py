@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import UserModel, PostModel
+from .models import UserModel, PostModel, MessageBoardPost
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, get_object_or_404
 from .forms import SignInForm, PostForm
 import feedparser
 from django.db.models import Q
+from django.views.generic import ListView
 
 
 import socket
@@ -77,11 +78,9 @@ def createPost(request):
 def viewPost(request, post_id):
     postModel = get_object_or_404(PostModel, pk=post_id)
     print(PostModel)
-    relatedItems = PostModel.objects.filter(foreignkeyToWiki= postModel)
     print(post_id)
     context = {'post_list': postModel,
                }
-    print(relatedItems)
 
     return render(request, 'sportsapp/viewPost.html', context)
 
@@ -139,7 +138,27 @@ def postList(request):
 
     return render(request, 'sportsapp/postList.html', context)
 
+def MessageBoard(request, message_id):
+    def messagePost(request):
+        form = Form(request.POST or None)
 
+        authUser = UserModel.objects.get(username=request.user)
+        context = {'MessageForm': form}
+
+        if request.method == 'POST':
+            print(request.method)
+
+            if form.is_valid():
+
+
+
+                MessageBoardPost.objects.create(title=request.POST["title"], textField=request.POST["textField"],
+                                         dateCreated=request.POST["dateCreated"],
+                                         foreignkeyToUserModel=authUser)
+
+
+
+                return redirect('index')
 
 
 

@@ -1,5 +1,5 @@
 from django import forms
-from .models import UserModel, PostModel
+from .models import UserModel, PostModel, MessageBoardPost
 
 class SignInForm(forms.ModelForm):
     class Meta:
@@ -18,3 +18,9 @@ class PostForm(forms.ModelForm):
         labels = {'title': 'Subject', 'textField': 'limit 140 characters', 'dateCreated': 'Date' }
         exclude = ['foreignkeyToUserModel']
 
+
+class MessageForm(forms.ModelForm):
+    class Meta:
+        model = MessageBoardPost
+        labels = {'title': 'Subject', 'description': 'limit 140 characters', 'dateCreated': 'Date' }
+        exclude = ['foreignkeyToUserModel']

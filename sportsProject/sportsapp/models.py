@@ -22,10 +22,19 @@ class PostModel(models.Model):
     foreignkeyToUserModel = models.ForeignKey(UserModel, on_delete=models.CASCADE, blank=True, null=True)
 
 
+class MessageBoardPost(models.Model):
+    text = models.TextField(max_length=140)
+
+    def __str__(self):
+
+        return self.text[:50]
+
 
 class News(models.Model):
     title = models.CharField(verbose_name='Name', null=False, max_length=50)
     description = models.CharField(verbose_name='Content', null=False, max_length=300)
+    dateCreated = models.DateField(default=timezone.now)
+    foreignkeyToUserModel = models.ForeignKey(UserModel, on_delete=models.CASCADE, blank=True, null=True)
 
 
 

@@ -12,7 +12,7 @@
     <div id=navBar1>
         <ul>
             <li id="redHover"><a href="{% url 'index' %}">Home</a></li>
-            <li><a href="{% url 'postList' %}">All Entries</a></li>
+            <li><a href="{% url 'postList' %}">All My Post</a></li>
 
 
 
@@ -22,12 +22,15 @@
 {% endblock navbar %}
 
 <div class="wrapper">
-    <div class="box header">{% block header %}
+    <div class="box header">
+
+        {% block header %}
         <!--main content-->
         <header>
             <h2>{{ user.username }}</h2>
         </header>
         {% endblock header %}
+
     </div>
 
 
